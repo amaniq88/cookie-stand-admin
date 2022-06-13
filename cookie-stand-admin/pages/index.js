@@ -8,11 +8,23 @@ import { useState } from "react"
 
 
 function Home(){
+    const [report,setReport] = useState({}); 
+
+    function formHandle(event) {
+        event.preventDefault();
+        const CreateReport= {
+        Location: event.target.L1?.value,
+        minCustomers: event.target.L2?.value,
+        maxCustomers: event.target.L3?.value,
+        AvgCookies: event.target.L4?.value,
+        };
+        setReport(CreateReport)
+   }
     return (
         <>
             <Head/>
             <Header/>
-            <Main/>
+            <Main formHandle={formHandle} report={report}/>
             <Footer/>
         </>
     )
