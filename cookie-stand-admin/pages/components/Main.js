@@ -1,5 +1,6 @@
 
 function Main(props) {  
+
   return (
     <>
         <form 
@@ -34,8 +35,11 @@ function Main(props) {
         
         </form>
         <h3 className="w-1/2 mx-auto my-4">
-          Report Table Coming Soon ...</h3>
-        <p className="w-1/2 mx-auto my-4">{JSON.stringify(props.report)}</p>
+        <h2 className="text-3xl">{props.reporthead}</h2>
+        </h3>
+        <div  className="w-1/2 mx-auto my-4">
+          {/* <h2>{JSON.stringify(props.report)}</h2> */}
+        </div>
   
     </>
   )
