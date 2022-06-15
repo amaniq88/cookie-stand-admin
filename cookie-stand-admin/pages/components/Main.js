@@ -26,7 +26,7 @@ function Main(props) {
             <input  className="mx-2 mb-2 h-fit" type={"text"} id="L4"/>
             <button 
             type="submit"
-            className="self-center h-12 px-4 py-2 rounded shadow bg-emerald-600 w-21 justify-self-center hover:bg-emerald-200 focus:shadow-outline foucus:outline-none" 
+            className="self-center h-12 px-4 py-2 rounded shadow bg-silver w-21 justify-self-center hover:bg-emerald-200 focus:shadow-outline foucus:outline-none" 
         >
             {" "}
             Create{" "}
