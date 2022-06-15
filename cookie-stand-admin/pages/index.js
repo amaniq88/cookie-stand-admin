@@ -1,9 +1,7 @@
-import Header from "./components/Header"
-import Head from "./components/Head"
-import Main from "./components/Main"
-import Footer from "./components/Footer"
-import ReportTable from "./components/ReportTable"
-import { useState } from "react"
+import CookieStandAdmin from "./components/CookieStandAdmin"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import LoginForm from "./components/LoginForm";
 
 
 
@@ -15,6 +13,30 @@ function Home(){
     const [addlocation,setaddlocation]=useState("");
     const [randlist,setrandlist]=useState([])
     const [row,setrow]=useState([])
+    const [token,settoken]=useState(null)
+    const userdata={
+        username : "Admin",
+        password : "abcd1234"
+    }
+
+    useEffect(()=>{
+        if(localStorage.getItem("token") === undefined){
+            axios.post("http://127.0.0.1:3000/api/v1/token", userdata).then(res=>{
+                localStorage.setItem('userToken',res.data.access)
+            })
+            settoken(localStorage.getItem("userToken"))
+        }
+    }, [])
+
+    function loginHandler(event) {
+        event.preventDefault();
+        settoken("added")
+    }
+
+    function signOutHandler(event) {
+        settoken(undefined)
+    }
+
 
     function formHandle(event) {
         event.preventDefault();
@@ -61,13 +83,14 @@ function Home(){
             }
                 
    }
+   if(token == null){
+    return(
+        <LoginForm  loginHandler={loginHandler}/>
+    );
+   }
     return (
         <>
-            <Head/>
-            <Header/>
-            <Main formHandle={formHandle} report={report}  reporthead={reporthead}/>
-            <ReportTable addlocation={addlocation}  row={row} counter={counter}/>
-            <Footer counter={counter}/>
+            <CookieStandAdmin signOutHandler={signOutHandler} formHandle={formHandle} report={report}  reporthead={reporthead} addlocation={addlocation}  row={row} counter={counter} />
         </>
     )
 }
